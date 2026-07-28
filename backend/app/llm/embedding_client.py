@@ -22,3 +22,13 @@ class EmbeddingClient:
             input=text,
         )
         return response["embeddings"][0]
+
+    def embed_many(self, texts: list[str]) -> list[list[float]]:
+        if not texts:
+            return []
+
+        response = self.client.embed(
+            model=self.model,
+            input=texts,
+        )
+        return response["embeddings"]

@@ -10,7 +10,10 @@ class WorldCupParser:
     def __init__(self, folder: str):
         self.folder = Path(folder)
 
-    def load(self) -> TournamentData:
+    def load(self, folder: str | None = None) -> TournamentData:
+        if folder is not None:
+            self.folder = Path(folder)
+
         cup = self._load("worldcup.json")
         name = cup["name"]
 
