@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 import chromadb
@@ -15,8 +16,9 @@ class VectorRepository:
         persist_directory: str | Path | None = None,
     ):
         if persist_directory is None:
-            # WorldCupRAG/chroma_db
-            persist_directory = Path(__file__).resolve().parents[3] / "chroma_db"
+            persist_directory = os.getenv("CHROMA_DIR") or (
+                Path(__file__).resolve().parents[2] / "chroma_db"
+            )
 
         self.collection_name = collection_name
         self.persist_directory = Path(persist_directory)

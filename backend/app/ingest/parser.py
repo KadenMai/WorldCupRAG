@@ -21,13 +21,23 @@ class WorldCupParser:
             year=self._extract_year(name),
             name=name,
             matches=cup["matches"],
-            groups=self._load("worldcup.groups.json")["groups"],
-            stadiums=self._load("worldcup.stadiums.json")["stadiums"],
+            groups=self._load_optional("worldcup.groups.json", "groups"),
+            stadiums=self._load_optional("worldcup.stadiums.json", "stadiums"),
         )
 
     def _load(self, filename: str):
         with open(self.folder / filename, encoding="utf-8") as f:
             return json.load(f)
+
+    def _load_optional(self, filename: str, key: str) -> list:
+        path = self.folder / filename
+        if not path.exists():
+            return []
+
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+
+        return data.get(key, [])
 
     def _extract_year(self, tournament_name: str) -> int:
         match = re.search(r"\b(19|20)\d{2}\b", tournament_name)

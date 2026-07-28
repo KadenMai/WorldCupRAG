@@ -20,7 +20,7 @@ class Indexer:
         self.embedding_client = embedding_client
         self.repository = repository
 
-    def index(self, folder: str) -> None:
+    def index(self, folder: str) -> dict[str, int]:
         print("Loading tournament...")
         tournament = self.parser.load(folder)
         print(f"{len(tournament.matches)} matches loaded")
@@ -53,3 +53,9 @@ class Indexer:
         )
 
         print("Done.")
+        return {
+            "year": tournament.year,
+            "matches": len(tournament.matches),
+            "documents": len(documents),
+            "chunks": len(chunks),
+        }
