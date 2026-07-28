@@ -6,8 +6,10 @@ def main():
 
     answer = llm.chat("Say Hello in one sentence")
 
-    print(answer)
+    worldcup_answer = llm.ask_about_worldcup()
 
+    print(answer)
+    print(worldcup_answer)
 
 if __name__ == "__main__":
     main()

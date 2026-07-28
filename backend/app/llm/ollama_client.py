@@ -1,5 +1,6 @@
 from ollama import Client
 
+
 class OllamaClient:
     def __init__(
         self,
@@ -9,15 +10,18 @@ class OllamaClient:
         self.client = Client(host=host)
         self.model = model
 
-    def chat(self, messages: list[dict]) -> str:
+    def chat(self, message: str) -> str:
         response = self.client.chat(
             model=self.model,
             messages=[
                 {
                     "role": "user",
-                    "content": messages
+                    "content": message,
                 }
-            ]
+            ],
         )
 
         return response["message"]["content"]
+
+    def ask_about_worldcup(self) -> str:
+        return self.chat("Who won the 2022 FIFA World Cup?")
