@@ -1,0 +1,30 @@
+# Web API
+fastapi
+uvicorn[standard]
+
+# Ollama
+ollama
+
+# Vector Database
+chromadb
+
+# Data Models
+pydantic
+
+# Environment Variables
+python-dotenv
+
+# Progress Bar
+tqdm
+
+# HTTP Client
+httpx
+
+# Data Processing
+orjson
+
+# Markdown
+markdown
+
+# Tokenizer (for chunking later)
+tiktoken
